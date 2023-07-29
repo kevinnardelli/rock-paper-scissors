@@ -8,17 +8,6 @@
 <body>
 <script>
 
-//Declared function getComputerChoice
-  //initialize variable computerPlay
-  //assigned Math.random()to computerPlay
-  //if computerPlay is less than 0.33
-    //return Rock
-  //if computerPlay is less than 0.66
-    //return Paper
-  //else
-    //return Scissors
-//let's try it!
-
 function getComputerChoice() {
   let computerPlay = Math.random();
   if(computerPlay < 1 / 3) {
@@ -30,57 +19,12 @@ function getComputerChoice() {
   }
 }
 
-//declared function getPlayerChoice
-//initialize variable playerPlay
-//used prompt(Your turn! Choose Rock, Paper or Scissor) and assign user's input to playerPlay
-//used expression function to Capitalize user's input
-//return final string
-//WARNING: this function assumes the input is a valid choice, maybe later I will change this
-
 function getPlayerChoice() {
   let playerInput = prompt("Your turn! Choose Rock, Paper or Scissor");
-  let playerPlay = playerInput.slice(0,1).toUpperCase() + playerInput.slice(1).toLowerCase(); //This line is for capitalize the user's input
+  let playerPlay = playerInput.slice(0,1).toUpperCase() + 
+  playerInput.slice(1).toLowerCase(); //This line is for capitalize the user's input
   return playerPlay;
 }
-
-//initialize playerSelection and computerSelection variables and assign them with getPlayerChoice and getComputerChoice functions respectively 
-
-
-
-//declare function playRound with two parameters: playerSelection and computerSelection
-  //if playerSelection === "Rock"
-    //switch(computerSelection)
-      //case "Rock"
-        //return "it's a tie!"
-        //break
-      //case "Paper"
-        //return "You loose! Paper beats Rock"
-        //break
-      //case "Scissor"
-        //return "You win! Rock beats Scissor"
-        //break
-  // else if playerSelection === "Paper"
-    //switch(computerSelection)
-      //case "Rock"
-        //return "You win! Paper beats Rock"
-        //break
-      //case "Paper"
-        //return "It's a tie!"
-        //break
-      //case "Scissor"
-        //return "You loose! Scissor beats Paper"
-        //break
-  // else if playerSelection === "Scissor"
-    //switch(computerSelection)
-      //case "Rock"
-        //return "You loose! Rock beats Scissor"
-        //break
-      //case "Paper"
-        //return "You win! Scissor beats Paper"
-        //break
-      //case "Scissor"
-        //return "It's a tie!"
-        //break  
 
 function playRound(playerSelection, computerSelection) {
   playerSelection = getPlayerChoice();
@@ -133,16 +77,6 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-//declare game function 
-  //initialize playerRoundsWin with 0
-  //initialize computerRoundsWin with 0
-  //for 5 times
-    //run playRound() function
-    //each time there's a win, increment correct variable by 1
-    //console.log each round result
-  //compare both variable
-  //console.log the winner
-
 function game() {
   let roundResult;
   let globalScore = 0;
@@ -173,7 +107,6 @@ function game() {
     return `Wow, it's a tie! ${finalScore}`;
   }
 }
-
 
 </script>
 </body>
