@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+main,
+footer,
+#playerSide,
+#computerSide,
+#gameResults,
+#playerSpells {
+  display: flex;
+  flex: 1;
+}
+
+body {
+  flex-direction: column;
+  border: 2px solid black;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+html, body {
+ /* overflow: hidden; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-direction: column;
+  height: 75%;
+}
+
+#computerSide {
+
+}
+
+#playerSide {
+  justify-content: right;
+  align-items: end;
+}
+
+footer {
+  max-height: 25%;
+  border-top: 2px solid black;
+}
+
+#gameResults {
+  width: 50%;
+  border: 2px solid black;
+  margin: 15px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 10px;
+}
+
+#restartButton {
+  height: 25%;
+  width: 30%;
+  align-self: center;
+}
+
+#playerSpells {
+  width: 50%;
+  padding-right: 40px;
+  justify-content: right;
+  gap: 40px;
+}
+
+#computerID,
+#playerID {
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  height: 75px;
+  width: 300px;
+  margin-top: 40px;
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
+#playerID {
+  border-left: 2px solid black;
+  border-right: 0px solid black;
+  margin-bottom: 40px;
+}
+
+img {
+  height: 250px;
+  width: 250px;
+}
+
+.image-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 130px;
+  width: 130px;
+}
+
+#spell0:hover,
+#spell1:hover,
+#spell2:hover {
+  opacity: 0.8;
+}
+
+#playerChoice img:hover {
+  border: 2px solid black;
+}
+
+button > img {
+  height: 130px;
+  width: 130px;
+  border: 2px solid black;
+  margin-top: 15px;
+}
+
+.computerSelection {
+  border: 2px solid black;
+}
+
+.health-bar {
+  width: 200px;
+  height: 25px;
+  border: 2px solid black;
+  display: flex;
+}
+
+.health {
+  background-color: grey;
+  width: 20%;
+}
+
+#gameResults > p {
+  height: 25%;
+  font-size: 22px;
+}
+
+#winner {
+  font-weight: bold;
+}

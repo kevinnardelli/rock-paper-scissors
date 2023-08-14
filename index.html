@@ -3,10 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <script src="javascript.js" defer></script>
-  <title>Document</title>
+  <title>Rock Paper Scissors</title>
 </head>
 <body>
+  <main>
+    <div id="computerSide">
+      <div id="computerID">
+        <h2>Val Shadowdance</h2>
+        <span class="health-bar">
+          <span class="health five" id="ch5"></span>
+          <span class="health four" id="ch4"></span>
+          <span class="health three" id="ch3"></span>
+          <span class="health two" id="ch2"></span>
+          <span class="health one" id="ch1"></span>
+        </span>
+      </div>
+      <img src="images/evil-mage.jpeg" alt="Computer's character">
+    </div>
 
+    <div id="playerSide">
+      <img src="images/good-mage.jpeg" alt="The player's character">
+      <div id="playerID">
+        <h2>Joard Lightsong</h2>
+        <span class="health-bar">
+          <span class="health one" id="ph1"></span>
+          <span class="health two" id="ph2"></span>
+          <span class="health three" id="ph3"></span>
+          <span class="health four" id="ph4"></span>
+          <span class="health five" id="ph5"></span>
+        </span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div id="gameResults">
+      <p id="roundResult">Waiting for round result...</p>
+      <p id="winner"></p>
+      <button id="restartButton">Restart</button>
+    </div>
+    <div id="playerSpells">
+      <button id="0" class="image-button">
+        <img src="images/fire.jpeg" alt="The fire button" id="spell0">
+      </button>
+      <button id="1" class="image-button">
+        <img src="images/water.jpeg" alt="The water button" id="spell1">
+      </button>
+      <button id="2" class="image-button">
+        <img src="images/plant.jpeg" alt="The plant button" id="spell2">
+      </button>
+    </div>
+  </footer>
 </body>
 </html>

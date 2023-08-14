@@ -1,99 +1,123 @@
+const moves = ['Fire', 'Water', 'Plant'];
+const playerButtons = document.querySelectorAll('#playerSpells button');
+const restartButton = document.querySelector('#restartButton')
+const computerSide = document.querySelector('#computerSide');
+const roundResult = document.querySelector('#roundResult');
+const winner = document.querySelector('#winner');
+const playerHealthBar = [document.querySelector('#ph5'), 
+document.querySelector('#ph4'), 
+document.querySelector('#ph3'), 
+document.querySelector('#ph2'), 
+document.querySelector('#ph1')]
+const computerHealthBar = [document.querySelector('#ch5'), 
+document.querySelector('#ch4'), 
+document.querySelector('#ch3'), 
+document.querySelector('#ch2'), 
+document.querySelector('#ch1')]
+
+restartButton.addEventListener('click', () => {
+  computerScore = 0;
+  playerScore = 0;
+  roundResult.textContent = 'Waiting for round result...';
+  computerHealthBar.forEach ((health) => {
+    health.classList.add('health')
+  })
+  playerHealthBar.forEach ((health) => {
+    health.classList.add('health')
+  })
+  winner.textContent = '';
+})
+
 function getComputerChoice() {
   let computerPlay = Math.random();
   if(computerPlay < 1 / 3) {
-    return "Rock";
+    return moves[0];
   } else if(computerPlay < 2 / 3) {
-    return "Paper";
+    return moves[1];
   } else {
-    return "Scissor";
+    return moves[2];
   }
 }
 
-function getPlayerChoice() {
-  let playerInput = prompt("Your turn! Choose Rock, Paper or Scissor");
-  let playerPlay = playerInput.slice(0,1).toUpperCase() + 
-  playerInput.slice(1).toLowerCase(); //This line is for capitalize the user's input
-  return playerPlay;
-}
+let playerScore = 0;
+let computerScore = 0;
+let playerWins = 0;
+let computerWins = 0;
 
-function playRound(playerSelection, computerSelection) {
-  playerSelection = getPlayerChoice();
-  computerSelection = getComputerChoice();
-  if(playerSelection === "Rock") {
-    switch(computerSelection) {
-      case "Rock":
-        console.log("It's a tie!");
-        return 0;
-        break;
-      case "Paper":
-        console.log("You loose! Paper beats Rock");
-        return -1;
-        break;
-      case "Scissor":
-        console.log("You win! Rock beats Scissor");
-        return 1;
-        break;
+function playRound(playerSelection) {
+  if(playerScore < 5 && computerScore < 5) {
+    let computerSelection = getComputerChoice();
+    if(playerSelection === 'Fire') {
+      switch(computerSelection) {
+        case 'Fire':
+          roundResult.textContent = 
+          'The spells collapse! No wizard takes damage.';
+          break;
+        case 'Water':
+          roundResult.textContent = 'Val\'s Water Vortex hits Joard!';
+          computerScore++;
+          break;
+        case 'Plant':
+          roundResult.textContent = 'Joard\'s Fireball hits Val!';
+          playerScore++;
+          break;
+      }
+    } else if(playerSelection === 'Water') {
+      switch(computerSelection) {
+        case 'Fire':
+          roundResult.textContent = 'Joard\'s Water Blade hits Val!';
+          playerScore++;
+          break;
+        case 'Water':
+          roundResult.textContent = 
+          'The spells collapse! No wizard takes damage.';
+          break;
+        case 'Plant':
+          roundResult.textContent = 'Val\'s Dance of Leafs hits Joard!';
+          computerScore++;
+          break;
+      }
+    } else if(playerSelection === 'Plant') {
+      switch(computerSelection) {
+        case 'Fire':
+          roundResult.textContent = 'Val\'s Fire Arrow hits Joard!';
+          computerScore++;
+          break;
+        case 'Water':
+          roundResult.textContent = 'Joard\'s Nature\'s Fury hits Val!';
+          playerScore++;
+          break;
+        case 'Plant':
+          roundResult.textContent = 
+          'The spells collapse! No wizard takes damage.';
+          break;
+      }
     }
-  } else if(playerSelection === "Paper") {
-    switch(computerSelection) {
-      case "Rock":
-        console.log("You win! Paper beats Rock");
-        return 1;
-        break;
-      case "Paper":
-        console.log("It's a tie!");
-        return 0;
-        break;
-      case "Scissor":
-        console.log("You loose! Scissor beats Paper");
-        return -1;
-        break;
-    }
-  } else if(playerSelection === "Scissor") {
-    switch(computerSelection) {
-      case "Rock":
-        console.log("You loose! Rock beats Paper");
-        return -1;
-        break;
-      case "Paper":
-        console.log("You win! Scissor beats Paper");
-        return 1;
-        break;
-      case "Scissor":
-        console.log("It's a tie!");
-        return 0;
-        break;
-    }
-  }
-}
-
-function game() {
-  let roundResult;
-  let globalScore = 0;
-  let playerScore = 0;
-  let computerScore = 0;
-
-  for(let i = 0; i < 5; i++) {
-    roundResult = playRound();
-    globalScore += roundResult;
-    if (roundResult > 0) {
-      playerScore++;
-      console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
-    } else if (roundResult < 0) {
-      computerScore++;
-      console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
-    } else {
-      console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
-    }
-  }
-
-  let finalScore = `Final Score -----> | Player: ${playerScore} | Computer: ${computerScore} |`;
-
-  if(globalScore > 0) {
-    return `Congratulations! You win the game! ${finalScore}`;
-  } else if (globalScore < 0) {
-    return `Sorry. You loose the game. ${finalScore}`;
   } else {
-    return `Wow, it's a tie! ${finalScore}`;
+    playerButtons.forEach((button) => {
+      button.removeEventListener('click', () => {
+        playRound(moves[Number(button.id)]);
+      })
+    })
+  }
+
+  for (let i = 0; i < playerScore; i++) {
+    computerHealthBar[i].classList.remove('health')
+  }
+  for (let i = 0; i < computerScore; i++) {
+    playerHealthBar[i].classList.remove('health')
+  }
+
+  if(playerScore === 5) {
+    winner.textContent = 'Congratulations! You win the game.'
+  } else if (computerScore === 5) {
+    winner.textContent = 'Sorry. You loose the game.'
   }
 }
+
+playerButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    playRound(moves[Number(button.id)]);
+  });
+});
+
